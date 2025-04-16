@@ -41,7 +41,6 @@ router.get('/all-tasks', async (req, res) => {
         const year = date.getFullYear();
         tasks[i].dueDate = day+"-"+month+"-"+year
     }
-    console.log(tasks)
     res.render('all-tasks.ejs', { tasks: tasks })
 })
 
