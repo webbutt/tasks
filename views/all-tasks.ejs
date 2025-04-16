@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks | All Tasks</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>TASKS</h1>
+        </div>
+        <div class="box">
+                <nav>
+                    <ul>
+                        <li><a href="/">Dashboard</a></li>
+                        <li><a href="/add-task">Create Task</a></li>
+                        <li class="active-tab"><a href="/all-tasks">All Tasks</a></li>
+                    </ul>
+                </nav>
+            <div class="content">
+                <div class="top-menu">
+                    <a class="btn-links" href="/pending-tasks">Pending Tasks</a>
+                    <a class="btn-links" href="/done-tasks">Done Tasks</a>
+                    <a class="btn-links" href="/sortByDueDate">Sort by Due Date</a>
+                </div>
+                <table>
+                    <tr>
+                        <th>No.</th>
+                        <th>Title</th>
+                        <th>Status</th>
+                        <th>Due Date</th>
+                        <th>Created Date</th>
+                    </tr>
+                    <% let i=1 %>
+                    <% tasks.forEach(t => { %>
+                    <% let date = t.dueDate %>
+                    <% let dateCreated = t.createdAt %>
+                    <% const day = String(date.getDate()).padStart(2, '0') %>
+                    <% const dayca = String(dateCreated.getDate()).padStart(2, '0') %>
+                    <% const month = String(date.getMonth() + 1).padStart(2, '0') %>
+                    <% const monthca = String(dateCreated.getMonth() + 1).padStart(2, '0') %>
+                    <% const year = date.getFullYear(); %>
+                    <% const yearca = dateCreated.getFullYear(); %>
+                    <% date = day+"-"+month+"-"+year %>
+
+                    <% const hours = String(dateCreated.getHours()).padStart(2, '0') %>
+                    <% const minutes = String(dateCreated.getMinutes()).padStart(2, '0') %>
+                    <% const seconds = String(dateCreated.getSeconds()).padStart(2, '0') %>
+                    <% dateCreated = dayca+"-"+monthca+"-"+yearca+" "+hours+":"+minutes+":"+seconds %>
+                    <tr>
+                        <td><%= i++ %></td>
+                        <td><%= t.title %></td>
+                        <td><%= t.status %></td>
+                        <td><%= date %></td>
+                        <td><%= dateCreated %></td>
+                    </tr>  
+                <% }) %>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="/js/date.js"></script>
+</body>
+</html>

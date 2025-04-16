@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks | Add New Task</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>TASKS</h1>
+        </div>
+        <div class="box">
+                <nav>
+                    <ul>
+                        <li><a href="/">Dashboard</a></li>
+                        <li class="active-tab"><a href="/add-task">Create Task</a></li>
+                        <li><a href="/all-tasks">All Tasks</a></li>
+                    </ul>
+                </nav>
+            <div class="content">
+                <form class="create-form" action="/add-task" method="post">
+                    <div class="field">
+                        <label for="title">Title</label>
+                        <input name="title" id="title" type="text" required>
+                    </div>
+                    <div class="field">
+                        <label for="status">Status</label>
+                        <select class="custom-select" name="status" id="status" required>
+                            <option disabled selected value>select one</option>
+                            <option value="pending">Pending</option>
+                            <option value="done">Done</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="ddate">Due Date</label>
+                        <input class="custom-date-input" name="ddate" id="ddate" type="date" required>
+                    </div>
+                    <div class="field">
+                        <button type="submit">ADD</button>
+                    </div>
+                    <% if (locals.message != null) { %>
+                        <div class="field">
+                            <%= message %>
+                        </div>
+                      <% } %>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="/js/due-date.js"></script>
+</body>
+</html>

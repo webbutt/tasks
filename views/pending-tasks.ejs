@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks | Pending Tasks</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>TASKS</h1>
+        </div>
+        <div class="box">
+                <nav>
+                    <ul>
+                        <li><a href="/">Dashboard</a></li>
+                        <li><a href="/add-task">Create Task</a></li>
+                        <li class="active-tab"><a href="/all-tasks">All Tasks</a></li>
+                    </ul>
+                </nav>
+            <div class="content">
+                <div class="top-menu">
+                    <a href="/pending-tasks">Pending Tasks</a>
+                    <a href="/done-tasks">Done Tasks</a>
+                </div>
+                <table>
+                    <tr>
+                        <th>No.</th>
+                        <th>Title</th>
+                        <th>Status</th>
+                        <th>Due Date</th>
+                    </tr>
+                    <% let i=1 %>
+                    <% tasks.forEach(t => { %>
+                    <% let date = t.dueDate %>
+                    <% const day = String(date.getDate()).padStart(2, '0') %>
+                    <% const month = String(date.getMonth() + 1).padStart(2, '0') %>
+                    <% const year = date.getFullYear(); %>
+                    <% date = day+"-"+month+"-"+year %>
+                    <tr>
+                        <td><%= i++ %></td>
+                        <td><%= t.title %></td>
+                        <td><%= t.status %></td>
+                        <td><%= date %></td>
+                    </tr>  
+                <% }) %>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="/js/date.js"></script>
+</body>
+</html>

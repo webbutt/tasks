@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks | Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>TASKS</h1>
+        </div>
+        <div class="box">
+                <nav>
+                    <ul>
+                        <li class="active-tab"><a href="/index">Dashboard</a></li>
+                        <li><a href="/add-task">Create Task</a></li>
+                        <li><a href="/all-tasks">All Tasks</a></li>
+                    </ul>
+                </nav>
+            <div class="content">
+                <h3>Pending Tasks: <%= pno %></h3>
+                <h3>Done Tasks: <%= dno %></h3>
+                <h3>Total Tasks: <%= tno %></h3>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
