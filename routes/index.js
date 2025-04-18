@@ -18,17 +18,29 @@ router.get('/add-task', (req, res) => {
 
 router.post('/add-task', async (req, res) => {    
     let message
-    let task = new Task({
-        title: req.body.title,
-        status: req.body.status,
-        dueDate: req.body.ddate
-    })
-    try {    
-        const newTask = await task.save()
-        message = "Task successfully added"
-        res.render('add-task.ejs', { message: message })
-    } catch(e) {
-        console.log(e)
+    if(req.body.status !== 'pending' && req.body.status !== 'done') {
+       console.log('Status has to be pending/done only!')
+       res.render('add-task.ejs', { message: 'Status has to be pending/done only!'})
+    } else {
+        let task = new Task({
+            title: req.body.title,
+            status: req.body.status,
+            dueDate: req.body.ddate
+        })
+        const givenDate = task.dueDate
+        const now = new Date().setHours(0,0,0,0)
+        if(givenDate < now) {
+            console.log('Date must be today or future!')
+            res.render('add-task.ejs', { message: 'Date must be today or future!'})
+        } else {
+            try {    
+                const newTask = await task.save()
+                message = "Task successfully added"
+                res.render('add-task.ejs', { message: message })
+            } catch(e) {
+                console.log(e)
+            }
+        }
     }
 })
 
